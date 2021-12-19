@@ -8,21 +8,34 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.notes.models.TodoItem
 import com.example.notes.navigation.MainScreen
-import com.example.notes.navigation.Navigation
-import com.example.notes.navigation.Screen
+import com.example.notes.ui.theme.view.TodoItemProto.TodoItem.newBuilder
+import notes.TodoItemKt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val list: List<TodoItem> = mutableListOf(
-            TodoItem("foo","zoo"),
-            TodoItem("foooo","zoooo"))
+
+//        var builder = notes.TodoItemProto.TodoItem.
+//        var foo = TodoItemKt.Dsl._create()
+//
+//
+//        val list: List<TodoItemProto> = mutableListOf(
+//            TodoItemProto.newBuilder()
+//                .setTitle("foo")
+//                .setDetails("zoo")
+//                .build(),
+//            TodoItemProto.newBuilder()
+//                .setTitle("foooo")
+//                .setDetails("zoo")
+//                .build()
+//        )
+
+        //some Issue with kotlin generation code in java so I will see this later and fix this
 
         setContent {
-                //            TodoList(todoItems = list)
-            Navigation()
+            TodoList(todoItems = list)
+            //Navigation()
         }
     }
 }
@@ -30,9 +43,9 @@ class MainActivity : ComponentActivity() {
 //make some API calls get the todolist later
 
 @Composable
-fun TodoList(todoItems: List<TodoItem>){
+fun TodoList(todoItems: List<TodoItemProto>) {
     LazyColumn(content = {
-        items(todoItems.size){ index ->
+        items(todoItems.size) { index ->
             Text(todoItems[index].toString())
         }
     })
@@ -40,7 +53,7 @@ fun TodoList(todoItems: List<TodoItem>){
 
 @Preview
 @Composable
-fun foo(){
+fun foo() {
 
 //    val list: List<TodoItem> = mutableListOf(
 //        TodoItem("foo","zoo"),

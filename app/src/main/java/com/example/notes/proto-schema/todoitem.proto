@@ -1,0 +1,9 @@
+syntax = "proto3";
+package notes;
+
+option java_outer_classname = "TodoItemProto";
+
+message TodoItem {
+  string title = 1;
+  string details = 2;
+}
