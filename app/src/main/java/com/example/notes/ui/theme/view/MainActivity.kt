@@ -7,7 +7,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.notes.models.TodoItem
+import com.example.notes.navigation.MainScreen
+import com.example.notes.navigation.Navigation
+import com.example.notes.navigation.Screen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +21,8 @@ class MainActivity : ComponentActivity() {
             TodoItem("foooo","zoooo"))
 
         setContent {
-            TodoList(todoItems = list)
+                //            TodoList(todoItems = list)
+            Navigation()
         }
     }
 }
@@ -37,9 +42,11 @@ fun TodoList(todoItems: List<TodoItem>){
 @Composable
 fun foo(){
 
-    val list: List<TodoItem> = mutableListOf(
-        TodoItem("foo","zoo"),
-        TodoItem("foooo","zoooo"))
-
-    TodoList(todoItems = list)
+//    val list: List<TodoItem> = mutableListOf(
+//        TodoItem("foo","zoo"),
+//        TodoItem("foooo","zoooo"))
+//
+//    TodoList(todoItems = list)
+    MainScreen(navController = rememberNavController())
 }
+
