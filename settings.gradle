@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Notes"
 include ':app'
+include ':app:network'
+include ':network'
+include ':commons'
