@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 
 public interface NotesService {
 
-    @GET("/notes")
-    Call<List<TodoItem>> listRepos(@Path("user") String user);
+    @GET("facts")
+    Call<List<TodoItem>> getTodoList();
 
 }
