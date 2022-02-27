@@ -1,5 +1,5 @@
 # Notes
- My Tinkering Space for Android
+ My Tinkering Space for Learning Android !
 
  * Use this for adding new proto files and compiling them 
  ```
