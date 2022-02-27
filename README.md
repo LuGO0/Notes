@@ -1,5 +1,5 @@
 # Notes
- Tinkering Space for Android
+ My Tinkering Space for Android
 
  * Use this for adding new proto files and compiling them 
  ```
