@@ -17,7 +17,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://cat-fact.herokuapp.com/")
+            .baseUrl("http://192.168.1.8:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

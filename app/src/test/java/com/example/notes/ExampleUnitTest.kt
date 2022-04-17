@@ -12,6 +12,14 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        checkingClosures(5, 4, { a: Int, b: Int -> a + b })
+        checkingClosures(5, 4, fun(x: Int, y: Int): Int { return x + y })
+
+
     }
+
+    private fun sum(a: Int, b: Int) = a + b
+
+    private fun checkingClosures(a: Int, b: Int, f: (Int, Int) -> Int) = f(a, b)
+
 }
