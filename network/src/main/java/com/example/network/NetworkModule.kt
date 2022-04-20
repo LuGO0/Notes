@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -24,7 +23,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNotesService(retrofit: Retrofit): NotesService {
-        return retrofit.create(NotesService::class.java)
+    fun provideNotesService(retrofit: Retrofit): NoteService {
+        return retrofit.create(NoteService::class.java)
     }
 }

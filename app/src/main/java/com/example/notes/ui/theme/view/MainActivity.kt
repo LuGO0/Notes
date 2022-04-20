@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.commons.models.Note
 import com.example.network.NetworkModule
-import com.example.network.NotesService
+import com.example.network.NoteService
 import com.example.notes.navigation.MainScreen
 import com.example.notes.navigation.Navigation
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         lateinit var list: List<Note>
         val retrofit: Retrofit = NetworkModule.provideRetrofit()
-        val notesService: NotesService = NetworkModule.provideNotesService(retrofit = retrofit)
+        val notesService: NoteService = NetworkModule.provideNotesService(retrofit = retrofit)
 
 
 
@@ -33,12 +33,12 @@ class MainActivity : ComponentActivity() {
 
 
             runBlocking(Dispatchers.IO) {
-                val res1 = notesService.saveNote(Note("foo", "bar")).execute()
-                val res2 = notesService.saveNote(Note("foo1", "bar1")).execute()
-
-                val res3 = notesService.deleteNote(2)
-
-                val ers4 = notesService.notes.execute().body()?.let { list = it }
+//                val res1 = notesService.saveNote(Note("foo", "bar")).execute()
+//                val res2 = notesService.saveNote(Note("foo1", "bar1")).execute()
+//
+//                val res3 = notesService.deleteNote(2)
+//
+//                val ers4 = notesService.notes.execute().body()?.let { list = it }
             }
 
             Log.d("foo", list.toString())
@@ -55,7 +55,7 @@ private suspend fun populateList() {
 //make some API calls get the todolist later
 
 @Composable
-fun TodoList(notes: List<com.example.commons.models.Note>) {
+fun TodoList(notes: List<Note>) {
     LazyColumn(content = {
         items(notes.size) { index ->
             Text(notes[index].toString())
