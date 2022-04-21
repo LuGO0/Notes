@@ -1,36 +1,48 @@
 package com.example.notes.data
 
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.commons.models.Note
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class NotesViewModel @Inject constructor(val repository: NotesRepository) : ViewModel() {
+@HiltViewModel
+class NotesViewModel @Inject constructor(private val repository: NotesRepository) : ViewModel() {
 
     // Here we will expose state and observe it thorough the UI
-    val notes:MutableLiveData<List<Note>> = MutableLiveData()
+    val notes: MutableLiveData<List<Note>> = MutableLiveData()
 
 
-    // The notesLiveData is initialized correctly
+    // The notesLiveData is initialized with initial list of Notes
     init {
-        viewModelScope.launch {
+        runBlocking {
 
+            // child scope
             val result = withContext(Dispatchers.IO) {
                 repository.getAllNotes()
             }
 
-            notes.value = result.asLiveData(viewModelScope.coroutineContext).value
+            notes.value = result
         }
     }
 
-    // now what how do I periodically  fetch it and display it??
+    fun updateNotes() {
+        runBlocking {
+            notes.value = repository.getAllNotes()
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()
-        viewModelScope.cancel()
+
+        // I think you dont need to do this anymore
+        // since you were not creating a coroutineScope yourself!
+        // viewModelScope.cancel()
     }
 }

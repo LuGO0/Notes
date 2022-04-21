@@ -2,12 +2,13 @@ package com.example.notes.data
 
 import com.example.commons.models.Note
 import com.example.network.NoteService
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import javax.inject.Inject
 
+/**
+ * Repository should not be stateful, d
+ */
 class NotesRepository @Inject constructor(private val notesService: NoteService) {
 
     suspend fun saveNote(note: Note) {
@@ -24,15 +25,12 @@ class NotesRepository @Inject constructor(private val notesService: NoteService)
         }
     }
 
-    suspend fun getAllNotes(): Flow<List<Note>> {
+    suspend fun getAllNotes(): List<Note> {
         try {
             val response: Response<List<Note>> = notesService.getNotes()
 
             if (response.isSuccessful) {
-                // emit flow or something like that
-                return flow {
-                    response
-                }
+                return response.body() ?: emptyList()
             } else {
                 // handle bad response
             }
@@ -40,7 +38,7 @@ class NotesRepository @Inject constructor(private val notesService: NoteService)
             // catch exception
         }
 
-        return emptyFlow()
+        return emptyList()
     }
 
     suspend fun deleteNote(note: Note) {
