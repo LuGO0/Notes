@@ -7,7 +7,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 /**
- * Repository should not be stateful, d
+ * Repository should not be stateful just fetch data or persist data
  */
 class NotesRepository @Inject constructor(private val notesService: NoteService) {
 

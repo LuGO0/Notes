@@ -67,16 +67,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // navigation
-    implementation "androidx.navigation:navigation-compose:2.4.0-beta02"
-
-    // compose
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-
     // proto not using for now
     implementation 'com.google.protobuf:protobuf-java:3.19.1'
 
@@ -113,5 +103,23 @@ dependencies {
     // alternately - if using Java8, use the following instead of lifecycle-compiler
 //    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 //    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // swipe to refresh
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.24.7-alpha"
+
+    // Observe as State Live data
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    // navigation
+    implementation "androidx.navigation:navigation-compose:2.4.0-beta02"
+
+    // compose
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+
 
 }
