@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.commons.models.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,18 +21,15 @@ class NotesViewModel @Inject constructor(private val repository: NotesRepository
 
     // The notesLiveData is initialized with initial list of Notes
     init {
-        viewModelScope.launch {
-            val result = repository.getAllNotes()
-            notes.value = result
-        }
+        refresh()
     }
 
     fun refresh() {
         // This doesn't handle multiple 'refreshing' tasks, don't use this
-        viewModelScope.launch {
-            isRefreshing.value = true
-            notes.value = repository.getAllNotes()
-            isRefreshing.value = false
+        viewModelScope.launch(Dispatchers.IO) {
+            isRefreshing.postValue(true)
+            notes.postValue(repository.getAllNotes())
+            isRefreshing.postValue(false)
         }
     }
 
