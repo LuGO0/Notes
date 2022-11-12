@@ -1,5 +1,7 @@
 # Notes
  My Tinkering Space for Learning Android !
+ 
+ * [Rest-API](https://github.com/LuGO0/Rest-API) project acts as a backend for this Android application.
 
  * Use this for adding new proto files and compiling them 
  ```
